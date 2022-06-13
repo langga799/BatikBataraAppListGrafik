@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "453051609192",
+    "firebase_url": "https://batikapp-9b3dc-default-rtdb.firebaseio.com",
+    "project_id": "batikapp-9b3dc",
+    "storage_bucket": "batikapp-9b3dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453051609192:android:39c08a60ab4d5f9ece8bdd",
+        "android_client_info": {
+          "package_name": "com.example.batikapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453051609192-ovdjcaiti894rpd7mo7q16qoahde29ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7HPoSFJf8aTkQbugFGKTRptNf77P4TjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453051609192-ovdjcaiti894rpd7mo7q16qoahde29ed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
