@@ -10,16 +10,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.batikapp.databinding.FragmentKain3Binding
-import com.example.batikapp.model.History
+import com.example.batikapp.model.ItemHistory
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlin.coroutines.CoroutineContext
 
-var listData = ArrayList<History>()
+
 class Kain3Fragment : Fragment() {
 
     private lateinit var binding: FragmentKain3Binding
     private lateinit var fire: FirebaseFirestore
+    private val listData = mutableListOf<ItemHistory>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +49,7 @@ class Kain3Fragment : Fragment() {
                     val waktu = document.get("waktu")
 
 
-                    listData.add(History(
+                    listData.add(ItemHistory(
                         waktu.toString(),
                         daya.toString(),
                         arus.toString(),
@@ -58,18 +60,19 @@ class Kain3Fragment : Fragment() {
 
                     Log.d("collection", listData.toString())
 
-                    setupRecyclerView()
                 }
-
+                Log.d("colleddction", listData.toString())
+                setupRecyclerView(listData)
             }
 
+        Log.d("collection=======", listData.toString())
 
-
+        setupRecyclerView(listData)
 
     }
 
-    private fun setupRecyclerView() {
-        val adapter = Kain3Adapter(requireActivity())
+    private fun setupRecyclerView(data : MutableList<ItemHistory>) {
+        val adapter = Kain3Adapter(data)
         binding.rvHistoryKain3.adapter = adapter
         binding.rvHistoryKain3.layoutManager = LinearLayoutManager(requireActivity())
         binding.rvHistoryKain3.setHasFixedSize(true)
