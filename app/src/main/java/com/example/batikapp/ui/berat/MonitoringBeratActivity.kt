@@ -1,8 +1,10 @@
 package com.example.batikapp.ui.berat
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,6 +20,7 @@ class MonitoringBeratActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMonitoringBeratBinding
     private lateinit var database: DatabaseReference
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMonitoringBeratBinding.inflate(layoutInflater)
@@ -48,8 +51,8 @@ class MonitoringBeratActivity : AppCompatActivity() {
                 val post = snapshot.child("berat").child("kain_1").value.toString()
                 try {
                     binding.apply {
-                        beratKain1.progress = post.toInt()
-                        beratKain1.max = 1000
+                        beratKain1.progress = post.toFloat()
+                        beratKain1.max = 1000F
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -72,8 +75,8 @@ class MonitoringBeratActivity : AppCompatActivity() {
                 val post = snapshot.child("berat").child("kain_2").value.toString()
                 try {
                     binding.apply {
-                        beratKain2.progress = post.toInt()
-                        beratKain2.max = 1000
+                        beratKain2.progress = post.toFloat()
+                        beratKain2.max = 1000F
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -96,8 +99,8 @@ class MonitoringBeratActivity : AppCompatActivity() {
                 val post = snapshot.child("berat").child("kain_3").value.toString()
                 try {
                     binding.apply {
-                        beratKain3.progress = post.toInt()
-                        beratKain3.max = 1000
+                        beratKain3.progress = post.toFloat()
+                        beratKain3.max = 1000F
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -120,8 +123,8 @@ class MonitoringBeratActivity : AppCompatActivity() {
                 val post = snapshot.child("berat").child("kain_4").value.toString()
                 try {
                     binding.apply {
-                        beratKain4.progress = post.toInt()
-                        beratKain4.max = 1000
+                        beratKain4.progress = post.toFloat()
+                        beratKain4.max = 1000F
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -144,8 +147,8 @@ class MonitoringBeratActivity : AppCompatActivity() {
                 val post = snapshot.child("berat").child("kain_5").value.toString()
                 try {
                     binding.apply {
-                        beratKain5.progress = post.toInt()
-                        beratKain5.max = 1000
+                        beratKain5.progress = post.toFloat()
+                        beratKain5.max = 1000F
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()

@@ -41,7 +41,7 @@ class CustomNotification : BroadcastReceiver() {
             context,
             REQUEST_CODE,
             intentToDashboard,
-            PendingIntent.FLAG_ONE_SHOT
+            PendingIntent.FLAG_IMMUTABLE
         )
 
         val notifSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
@@ -92,7 +92,7 @@ class CustomNotification : BroadcastReceiver() {
             context,
             REQUEST_CODE,
             intentToDashboard,
-            PendingIntent.FLAG_ONE_SHOT
+            PendingIntent.FLAG_IMMUTABLE
         )
 
         val notifSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
@@ -142,7 +142,7 @@ class CustomNotification : BroadcastReceiver() {
             context,
             REQUEST_CODE,
             intentToDashboard,
-            PendingIntent.FLAG_ONE_SHOT
+            PendingIntent.FLAG_IMMUTABLE
         )
 
         val notifSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
@@ -193,7 +193,7 @@ class CustomNotification : BroadcastReceiver() {
             context,
             REQUEST_CODE,
             intentToDashboard,
-            PendingIntent.FLAG_ONE_SHOT
+            PendingIntent.FLAG_IMMUTABLE
         )
 
         val notifSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
@@ -240,7 +240,7 @@ class CustomNotification : BroadcastReceiver() {
             context,
             REQUEST_CODE,
             intentToDashboard,
-            PendingIntent.FLAG_ONE_SHOT
+            PendingIntent.FLAG_IMMUTABLE
         )
 
         val notifSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)

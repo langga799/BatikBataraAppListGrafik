@@ -57,17 +57,33 @@
                 app:layout_constraintTop_toBottomOf="@+id/btn_back_to_dashboard"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <com.daasuu.ahp.AnimateHorizontalProgressBar
+            <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/berat_kain_1"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
-                app:ahp_progressColor="@color/yellow_700"
+                app:rcAnimationEnable="true"
+                app:rcBackgroundColor="@color/white"
+                app:rcMax="1000"
+                app:rcProgress="60"
+                app:rcProgressColor="@color/yellow_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/textView"/>
+
+<!--            <com.daasuu.ahp.AnimateHorizontalProgressBar-->
+<!--                android:id="@+id/berat_kain_1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                app:ahp_progressColor="@color/yellow_700"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
             <TextView
                 android:id="@+id/textView21"
@@ -191,13 +207,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/berat_kain_1" />
 
-            <com.daasuu.ahp.AnimateHorizontalProgressBar
+            <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/berat_kain_2"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
-                app:ahp_progressColor="@color/yellow_700"
+                app:rcAnimationEnable="true"
+                app:rcBackgroundColor="@color/white"
+                app:rcMax="1000"
+                app:rcProgress="60"
+                app:rcProgressColor="@color/yellow_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -230,13 +250,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/berat_kain_2" />
 
-            <com.daasuu.ahp.AnimateHorizontalProgressBar
+            <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/berat_kain_3"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
-                app:ahp_progressColor="@color/yellow_700"
+                app:rcAnimationEnable="true"
+                app:rcBackgroundColor="@color/white"
+                app:rcMax="1000"
+                app:rcProgress="60"
+                app:rcProgressColor="@color/yellow_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -268,13 +292,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/berat_kain_3" />
 
-            <com.daasuu.ahp.AnimateHorizontalProgressBar
+            <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/berat_kain_4"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
-                app:ahp_progressColor="@color/yellow_700"
+                app:rcAnimationEnable="true"
+                app:rcBackgroundColor="@color/white"
+                app:rcMax="1000"
+                app:rcProgress="60"
+                app:rcProgressColor="@color/yellow_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -306,13 +334,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/berat_kain_4" />
 
-            <com.daasuu.ahp.AnimateHorizontalProgressBar
+            <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                 android:id="@+id/berat_kain_5"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
-                app:ahp_progressColor="@color/yellow_700"
+                app:rcAnimationEnable="true"
+                app:rcBackgroundColor="@color/white"
+                app:rcMax="1000"
+                app:rcProgress="60"
+                app:rcProgressColor="@color/yellow_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
