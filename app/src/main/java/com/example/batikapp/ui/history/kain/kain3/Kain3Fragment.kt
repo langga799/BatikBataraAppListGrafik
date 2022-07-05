@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.batikapp.databinding.FragmentKain3Binding
 import com.example.batikapp.model.ItemHistory
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlin.coroutines.CoroutineContext
@@ -21,7 +22,7 @@ class Kain3Fragment : Fragment() {
 
     private lateinit var binding: FragmentKain3Binding
     private lateinit var fire: FirebaseFirestore
-    private val listData = mutableListOf<ItemHistory>()
+    private val kain3Adapter = Kain3Adapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +39,7 @@ class Kain3Fragment : Fragment() {
 
         fire = Firebase.firestore
 
-        fire.collection("history").get()
+        fire.collection("history").orderBy("waktu", Query.Direction.DESCENDING).get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     val suhu = document.get("suhu") as List<*>
@@ -49,34 +50,27 @@ class Kain3Fragment : Fragment() {
                     val waktu = document.get("waktu")
 
 
-                    listData.add(ItemHistory(
+                    kain3Adapter.addAll(
+                    arrayListOf(ItemHistory(
                         waktu.toString(),
                         daya.toString(),
                         arus.toString(),
                         tegangan.toString(),
                         frekuensi.toString(),
                         suhu
-                    ))
-
-                    Log.d("collection", listData.toString())
+                    )))
 
                 }
-                Log.d("colleddction", listData.toString())
-                setupRecyclerView(listData)
             }
 
-        Log.d("collection=======", listData.toString())
 
-        setupRecyclerView(listData)
+        setupRecyclerView()
 
     }
 
-    private fun setupRecyclerView(data : MutableList<ItemHistory>) {
-        val adapter = Kain3Adapter(data)
-        binding.rvHistoryKain3.adapter = adapter
+    private fun setupRecyclerView() {
+        binding.rvHistoryKain3.adapter = kain3Adapter
         binding.rvHistoryKain3.layoutManager = LinearLayoutManager(requireActivity())
         binding.rvHistoryKain3.setHasFixedSize(true)
-
-        Log.d("data-kain3", listData.toString())
     }
 }

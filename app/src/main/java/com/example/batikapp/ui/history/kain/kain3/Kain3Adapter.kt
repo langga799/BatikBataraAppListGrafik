@@ -1,5 +1,6 @@
 package com.example.batikapp.ui.history.kain.kain3
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,10 +12,17 @@ import com.example.batikapp.model.ItemHistory
 import com.example.batikapp.model.ItemSuhu
 
 var listGrafik = ArrayList<Int>()
-class Kain3Adapter(private val listData: MutableList<ItemHistory>) : RecyclerView.Adapter<Kain3Adapter.Kain3ViewHolder>() {
+class Kain3Adapter() : RecyclerView.Adapter<Kain3Adapter.Kain3ViewHolder>() {
 
+    private val listData = ArrayList<ItemHistory>()
     init {
         Log.d("history====", listData.toString())
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addAll(data : ArrayList<ItemHistory>){
+        listData.addAll(data)
+        notifyDataSetChanged()
     }
 
     inner class Kain3ViewHolder(private val binding: ItemViewBinding) :
@@ -29,17 +37,10 @@ class Kain3Adapter(private val listData: MutableList<ItemHistory>) : RecyclerVie
                 tvTanggal.text = history.waktu
             }
 
-
-
-//            for (temp in history.suhu){
-//                val data = temp.toString().toInt()
-//                listGrafik.add(data)
-//            }
-
-
         }
 
         fun bindSuhu(itemSuhu: ItemHistory){
+            listGrafik.clear()
             for (data in  itemSuhu.suhu){
                 val suhu = data.toString().toInt()
                 listGrafik.add(suhu)

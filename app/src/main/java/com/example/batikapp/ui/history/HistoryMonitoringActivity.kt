@@ -1,7 +1,9 @@
 package com.example.batikapp.ui.history
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.batikapp.databinding.ActivityHistoryMonitoringBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -17,6 +19,7 @@ class HistoryMonitoringActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHistoryMonitoringBinding
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryMonitoringBinding.inflate(layoutInflater)

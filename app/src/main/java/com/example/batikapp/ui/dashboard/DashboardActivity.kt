@@ -8,13 +8,15 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.batikapp.databinding.ActivityDashboardBinding
-import com.example.batikapp.service.CustomNotification
-import com.example.batikapp.service.CustomNotificationBatik
+import com.example.batikapp.helper.SharedPreference
+import com.example.batikapp.network.NetworkConfig
 import com.example.batikapp.ui.berat.MonitoringBeratActivity
 import com.example.batikapp.ui.control.ControlActivity
 import com.example.batikapp.ui.history.HistoryMonitoringActivity
 import com.example.batikapp.ui.listrik.MonitoringListrikActivity
 import com.example.batikapp.ui.suhu.MonitoringSuhuActivity
+import com.example.monitoringlistrik3phase.service.model.NotificationData
+import com.example.monitoringlistrik3phase.service.model.PushNotification
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -23,6 +25,10 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -31,7 +37,6 @@ class DashboardActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
     private lateinit var database: DatabaseReference
-    private lateinit var notif: CustomNotification
     private lateinit var fire: FirebaseFirestore
 
 
@@ -42,15 +47,23 @@ class DashboardActivity : AppCompatActivity() {
     private var frekuensi = ""
 
 
+    companion object {
+        private const val TAG = "Dashboard Activity"
+        const val TOPIC = "/topics/kain"
+    }
+
+    private lateinit var preference: SharedPreference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        notif = CustomNotification()
+
         database = Firebase.database.reference
         fire = Firebase.firestore
+        preference = SharedPreference(this)
 
 
         getDataDaya()
@@ -59,27 +72,70 @@ class DashboardActivity : AppCompatActivity() {
         getDataFrekuensi()
 
 
-        checkNotifKain1()
-        checkNotifKain2()
-        checkNotifKain3()
-        checkNotifKain4()
-        checkNotifKain5()
+        setupNotification()
+
 
         navigation()
 
     }
 
 
+    private fun setupNotification() {
+        FirebaseMessaging.getInstance().token.addOnSuccessListener {
+            preference.saveTokenFirebase(it)
+            Log.d("TOKEN-FCM", it)
+        }
+
+        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
+
+        checkNotifKain1()
+        checkNotifKain2()
+        checkNotifKain3()
+        checkNotifKain4()
+        checkNotifKain5()
+
+    }
+
+
+    private fun sendNotification(notification: PushNotification) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = NetworkConfig().getApiService().pushNotification(notification)
+                if (response.isSuccessful) {
+                    //   Log.d(TAG, "Response: ${Gson().toJson(response)}")
+                } else {
+                    Log.d(TAG, response.errorBody().toString())
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, e.toString())
+            }
+        }
+    }
+
+
     private fun checkNotifKain1() {
-        binding.alertWarning.visibility = View.INVISIBLE
+        binding.alertWarning.visibility = View.GONE
+
         database.child("berat").child("kain_1")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value.toString().toInt() < 200) {
                         binding.alertWarning.visibility = View.VISIBLE
-                        notif.sendNotification1(this@DashboardActivity, "Kain 1 sudah kering")
+                        // Sending message
+                        val title = "Batik Batara App | Monitoring Kain"
+                        val message = "Kain 1 Sudah Kering"
+                        sendNotification(
+                            PushNotification(
+                                NotificationData(
+                                    title,
+                                    message
+                                ),
+                                TOPIC
+                            )
+                        )
+
                         sendHistoryToFirestore1()
-                        Log.d("data", "Kain 1 sudah kering")
+
                     } else {
                         binding.alertWarning.visibility = View.GONE
                     }
@@ -99,9 +155,22 @@ class DashboardActivity : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value.toString().toInt() < 200) {
                         binding.alertWarning.visibility = View.VISIBLE
-                        notif.sendNotification2(this@DashboardActivity, "Kain 2 sudah kering")
-                        Log.d("data", "Kain 2 sudah kering")
+
+                        // Sending message
+                        val title = "Batik Batara App | Monitoring Kain"
+                        val message = "Kain 2 Sudah Kering"
+                        sendNotification(
+                            PushNotification(
+                                NotificationData(
+                                    title,
+                                    message
+                                ),
+                                TOPIC
+                            )
+                        )
+
                         sendHistoryToFirestore2()
+
                     } else {
                         binding.alertWarning.visibility = View.GONE
                     }
@@ -120,9 +189,22 @@ class DashboardActivity : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value.toString().toInt() < 200) {
                         binding.alertWarning.visibility = View.VISIBLE
-                        notif.sendNotification3(this@DashboardActivity, "Kain 3 sudah kering")
-                        Log.d("data", "Kain 3 sudah kering")
+
+                        // Sending message
+                        val title = "Batik Batara App | Monitoring Kain"
+                        val message = "Kain 3 Sudah Kering"
+                        sendNotification(
+                            PushNotification(
+                                NotificationData(
+                                    title,
+                                    message
+                                ),
+                                TOPIC
+                            )
+                        )
+
                         sendHistoryToFirestore3()
+
                     } else {
                         binding.alertWarning.visibility = View.GONE
                     }
@@ -141,9 +223,22 @@ class DashboardActivity : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value.toString().toInt() < 200) {
                         binding.alertWarning.visibility = View.VISIBLE
-                        notif.sendNotification4(this@DashboardActivity, "Kain 4 sudah kering")
-                        Log.d("data", "Kain 4 sudah kering")
+
+                        // Sending message
+                        val title = "Batik Batara App | Monitoring Kain"
+                        val message = "Kain 4 Sudah Kering"
+                        sendNotification(
+                            PushNotification(
+                                NotificationData(
+                                    title,
+                                    message
+                                ),
+                                TOPIC
+                            )
+                        )
+
                         sendHistoryToFirestore4()
+
                     } else {
                         binding.alertWarning.visibility = View.GONE
                     }
@@ -163,9 +258,22 @@ class DashboardActivity : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value.toString().toInt() < 200) {
                         binding.alertWarning.visibility = View.VISIBLE
-                        notif.sendNotification5(this@DashboardActivity, "Kain 5 sudah kering")
-                        Log.d("data", "Kain 5 sudah kering")
+
+                        // Sending message
+                        val title = "Batik Batara App | Monitoring Kain"
+                        val message = "Kain 5 Sudah Kering"
+                        sendNotification(
+                            PushNotification(
+                                NotificationData(
+                                    title,
+                                    message
+                                ),
+                                TOPIC
+                            )
+                        )
+
                         sendHistoryToFirestore5()
+
                     } else {
                         binding.alertWarning.visibility = View.GONE
                     }
@@ -211,6 +319,7 @@ class DashboardActivity : AppCompatActivity() {
             })
     }
 
+
     private fun getDataTegangan() {
         database.child("listrik").child("tegangan")
             .addValueEventListener(object : ValueEventListener {
@@ -224,6 +333,7 @@ class DashboardActivity : AppCompatActivity() {
 
             })
     }
+
 
     private fun getDataFrekuensi() {
         database.child("listrik").child("frekuensi")
@@ -259,12 +369,13 @@ class DashboardActivity : AppCompatActivity() {
             )
         )
 
-        fire.collection("history")
+        fire.collection("history1")
             .add(data)
             .addOnSuccessListener { result ->
                 Log.d("dataCollection", result.toString())
             }
     }
+
 
     private fun sendHistoryToFirestore2() {
         val current = LocalDateTime.now()
@@ -292,6 +403,7 @@ class DashboardActivity : AppCompatActivity() {
             }
     }
 
+
     private fun sendHistoryToFirestore3() {
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
@@ -318,6 +430,7 @@ class DashboardActivity : AppCompatActivity() {
             }
     }
 
+
     private fun sendHistoryToFirestore4() {
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
@@ -343,6 +456,7 @@ class DashboardActivity : AppCompatActivity() {
                 Log.d("dataCollection", result.toString())
             }
     }
+
 
     private fun sendHistoryToFirestore5() {
         val current = LocalDateTime.now()
@@ -371,7 +485,6 @@ class DashboardActivity : AppCompatActivity() {
     }
 
 
-
     // Navigation ==================================================================================
     private fun navigation() {
         binding.apply {
@@ -391,6 +504,9 @@ class DashboardActivity : AppCompatActivity() {
                 startActivity(Intent(this@DashboardActivity, ControlActivity::class.java))
             }
         }
-
     }
+
+
+
+
 }
