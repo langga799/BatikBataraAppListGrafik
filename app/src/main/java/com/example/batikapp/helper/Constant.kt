@@ -1,1 +1,1 @@
-package com.example.batikapp.helperobject Constant {    const val BASE_URL = "https://fcm.googleapis.com/"    const val SERVER_KEY = "AAAAaXv68Gg:APA91bGiI-i94IjrbhvcYWGjunc3cC1J2EAs9Qsj6FUc5XfbD03GsQQyWl15ILhGUSEnU187d-Jd4EnzJA6SOL7x4ONK_9TyREOklD-jWThLiORLJNgcEX-pN_RMIoCRM9aLYJEZt_yL"    const val CONTENT_TYPE = "application/json"}
+package com.example.batikapp.helperobject Constant {    const val BASE_URL = "https://fcm.googleapis.com/"    const val CONTENT_TYPE = "application/json"}
