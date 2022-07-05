@@ -1,9 +1,6 @@
 package com.example.batikapp.ui.history.kain.kain3
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +12,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlin.coroutines.CoroutineContext
 
 
 class Kain3Fragment : Fragment() {
@@ -39,8 +35,10 @@ class Kain3Fragment : Fragment() {
 
         fire = Firebase.firestore
 
-        fire.collection("history").orderBy("waktu", Query.Direction.DESCENDING).get()
+        binding.progressBar.visibility = View.VISIBLE
+        fire.collection("history3").orderBy("waktu", Query.Direction.DESCENDING).get()
             .addOnSuccessListener { result ->
+                binding.progressBar.visibility = View.GONE
                 for (document in result) {
                     val suhu = document.get("suhu") as List<*>
                     val arus = document.get("arus")
@@ -51,14 +49,14 @@ class Kain3Fragment : Fragment() {
 
 
                     kain3Adapter.addAll(
-                    arrayListOf(ItemHistory(
-                        waktu.toString(),
-                        daya.toString(),
-                        arus.toString(),
-                        tegangan.toString(),
-                        frekuensi.toString(),
-                        suhu
-                    )))
+                        arrayListOf(ItemHistory(
+                            waktu.toString(),
+                            daya.toString(),
+                            arus.toString(),
+                            tegangan.toString(),
+                            frekuensi.toString(),
+                            suhu
+                        )))
 
                 }
             }

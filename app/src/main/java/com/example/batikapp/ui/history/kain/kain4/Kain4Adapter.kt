@@ -1,4 +1,4 @@
-package com.example.batikapp.ui.history.kain.kain2
+package com.example.batikapp.ui.history.kain.kain4
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -12,7 +12,7 @@ import com.example.batikapp.model.ItemHistory
 
 var listGrafik = ArrayList<Int>()
 
-class Kain2Adapter() : RecyclerView.Adapter<Kain2Adapter.Kain2ViewHolder>() {
+class Kain4Adapter() : RecyclerView.Adapter<Kain4Adapter.Kain4ViewHolder>() {
 
     private val listData = ArrayList<ItemHistory>()
 
@@ -26,7 +26,7 @@ class Kain2Adapter() : RecyclerView.Adapter<Kain2Adapter.Kain2ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class Kain2ViewHolder(private val binding: ItemViewBinding) :
+    inner class Kain4ViewHolder(private val binding: ItemViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(history: ItemHistory) {
@@ -52,23 +52,23 @@ class Kain2Adapter() : RecyclerView.Adapter<Kain2Adapter.Kain2ViewHolder>() {
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Kain2ViewHolder {
-        return Kain2ViewHolder(ItemViewBinding.inflate(LayoutInflater.from(parent.context),
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Kain4ViewHolder {
+        return Kain4ViewHolder(ItemViewBinding.inflate(LayoutInflater.from(parent.context),
             parent,
             false))
     }
 
-    override fun onBindViewHolder(holder: Kain2ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: Kain4ViewHolder, position: Int) {
         holder.bind(listData[position])
 
         holder.bindSuhu(listData[position])
 
-        val childAdapter2 = ChildAdapter2()
+        val childAdapter4 = ChildAdapter4()
         val rv = holder.itemView.findViewById<RecyclerView>(R.id.child_recycler_view)
         rv.apply {
             layoutManager =
                 LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = childAdapter2
+            adapter = childAdapter4
             setHasFixedSize(true)
         }
 

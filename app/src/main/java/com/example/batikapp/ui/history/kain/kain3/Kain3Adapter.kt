@@ -9,18 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.batikapp.R
 import com.example.batikapp.databinding.ItemViewBinding
 import com.example.batikapp.model.ItemHistory
-import com.example.batikapp.model.ItemSuhu
 
 var listGrafik = ArrayList<Int>()
+
 class Kain3Adapter() : RecyclerView.Adapter<Kain3Adapter.Kain3ViewHolder>() {
 
     private val listData = ArrayList<ItemHistory>()
+
     init {
         Log.d("history====", listData.toString())
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addAll(data : ArrayList<ItemHistory>){
+    fun addAll(data: ArrayList<ItemHistory>) {
         listData.addAll(data)
         notifyDataSetChanged()
     }
@@ -39,9 +40,9 @@ class Kain3Adapter() : RecyclerView.Adapter<Kain3Adapter.Kain3ViewHolder>() {
 
         }
 
-        fun bindSuhu(itemSuhu: ItemHistory){
+        fun bindSuhu(itemSuhu: ItemHistory) {
             listGrafik.clear()
-            for (data in  itemSuhu.suhu){
+            for (data in itemSuhu.suhu) {
                 val suhu = data.toString().toInt()
                 listGrafik.add(suhu)
             }

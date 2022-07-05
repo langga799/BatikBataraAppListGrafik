@@ -1,41 +1,82 @@
 package com.example.batikapp.ui.history.kain.kain1
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.batikapp.model.Riwayat
+import com.example.batikapp.R
 import com.example.batikapp.databinding.ItemViewBinding
+import com.example.batikapp.model.ItemHistory
 
-class Kain1Adapter(private val kain1: ArrayList<Riwayat>) :
-    RecyclerView.Adapter<Kain1Adapter.Kain1Holder>() {
+var listGrafik = ArrayList<Int>()
 
-    inner class Kain1Holder(val binding: ItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
+class Kain1Adapter() : RecyclerView.Adapter<Kain1Adapter.Kain1ViewHolder>() {
 
-        fun bind(riwayat: Riwayat) {
-            binding.tvSuhuField.text = riwayat.suhu.toString()
-            binding.tvTanggal.text = riwayat.tanggal
-            binding.tvArus.text = riwayat.arus.toString()
-            binding.tvDaya.text = riwayat.daya.toString()
-            binding.tvTegangan.text = riwayat.tegangan.toString()
-            binding.tvFrekuensi.text = riwayat.suhu.toString()
+    private val listData = ArrayList<ItemHistory>()
 
-//            val suhu = RiwayatKain1().id1?.suhu!!
-//            for (s in suhu.indices){
-//                Log.d("suhukain", s.toString())
-//            }
+    init {
+        Log.d("history====", listData.toString())
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addAll(data: ArrayList<ItemHistory>) {
+        listData.addAll(data)
+        notifyDataSetChanged()
+    }
+
+    inner class Kain1ViewHolder(private val binding: ItemViewBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(history: ItemHistory) {
+            binding.apply {
+                tvArus.text = history.arus
+                tvDaya.text = history.daya
+                tvTegangan.text = history.tegangan
+                tvFrekuensi.text = history.frekuensi
+                tvTanggal.text = history.waktu
+            }
+
         }
+
+        fun bindSuhu(itemSuhu: ItemHistory) {
+            listGrafik.clear()
+            for (data in itemSuhu.suhu) {
+                val suhu = data.toString().toInt()
+                listGrafik.add(suhu)
+            }
+
+        }
+
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Kain1Holder {
-        return Kain1Holder(ItemViewBinding.inflate(LayoutInflater.from(parent.context),
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Kain1ViewHolder {
+        return Kain1ViewHolder(ItemViewBinding.inflate(LayoutInflater.from(parent.context),
             parent,
             false))
     }
 
-    override fun onBindViewHolder(holder: Kain1Holder, position: Int) {
-        holder.bind(kain1[position])
+    override fun onBindViewHolder(holder: Kain1ViewHolder, position: Int) {
+        holder.bind(listData[position])
+
+        holder.bindSuhu(listData[position])
+
+        val childAdapter1 = ChildAdapter1()
+        val rv = holder.itemView.findViewById<RecyclerView>(R.id.child_recycler_view)
+        rv.apply {
+            layoutManager =
+                LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = childAdapter1
+            setHasFixedSize(true)
+        }
+
+
     }
 
-    override fun getItemCount(): Int = kain1.size
+    override fun getItemCount(): Int {
+        return listData.size
+    }
+
 }

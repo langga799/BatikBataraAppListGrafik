@@ -18,7 +18,7 @@ object Grafik {
     ) {
 
         // Style Grafik
-        val lineDataSetRecord = LineDataSet(record, "Record")
+        val lineDataSetRecord = LineDataSet(record, "Suhu")
         lineDataSetRecord.setCircleColor(ContextCompat.getColor(context, R.color.teal_700))
         lineDataSetRecord.color = ContextCompat.getColor(context, R.color.teal_700)
         lineDataSetRecord.lineWidth = 1.5F

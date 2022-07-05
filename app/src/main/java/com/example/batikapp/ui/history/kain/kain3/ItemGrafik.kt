@@ -1,1 +1,0 @@
-package com.example.batikapp.ui.history.kain.kain3data class ItemGrafik(    val point: Int,)
