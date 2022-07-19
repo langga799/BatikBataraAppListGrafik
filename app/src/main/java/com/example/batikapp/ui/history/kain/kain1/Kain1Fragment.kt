@@ -37,7 +37,7 @@ class Kain1Fragment : Fragment() {
         fire = Firebase.firestore
 
         binding.progressBar.visibility = View.VISIBLE
-        fire.collection("history").orderBy("waktu", Query.Direction.DESCENDING).get()
+        fire.collection("history1").orderBy("waktu", Query.Direction.DESCENDING).get()
             .addOnSuccessListener { result ->
                 binding.progressBar.visibility = View.GONE
                 for (document in result) {

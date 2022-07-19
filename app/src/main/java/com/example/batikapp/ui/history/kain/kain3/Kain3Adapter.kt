@@ -12,7 +12,7 @@ import com.example.batikapp.model.ItemHistory
 
 var listGrafik = ArrayList<Int>()
 
-class Kain3Adapter() : RecyclerView.Adapter<Kain3Adapter.Kain3ViewHolder>() {
+class Kain3Adapter : RecyclerView.Adapter<Kain3Adapter.Kain3ViewHolder>() {
 
     private val listData = ArrayList<ItemHistory>()
 

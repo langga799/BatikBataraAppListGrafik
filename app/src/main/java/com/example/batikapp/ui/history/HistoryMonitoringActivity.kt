@@ -13,7 +13,6 @@ import com.example.batikapp.ui.history.kain.kain2.Kain2Fragment
 import com.example.batikapp.ui.history.kain.kain3.Kain3Fragment
 import com.example.batikapp.ui.history.kain.kain4.Kain4Fragment
 import com.example.batikapp.ui.history.kain.kain5.Kain5Fragment
-import com.langga.batikapp.ui.history.AdapterTabHistory
 
 class HistoryMonitoringActivity : AppCompatActivity() {
 

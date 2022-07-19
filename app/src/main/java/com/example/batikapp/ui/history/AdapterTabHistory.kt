@@ -1,4 +1,4 @@
-package com.langga.batikapp.ui.history
+package com.example.batikapp.ui.history
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
