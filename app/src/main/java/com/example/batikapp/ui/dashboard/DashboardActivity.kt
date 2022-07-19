@@ -15,8 +15,8 @@ import com.example.batikapp.ui.control.ControlActivity
 import com.example.batikapp.ui.history.HistoryMonitoringActivity
 import com.example.batikapp.ui.listrik.MonitoringListrikActivity
 import com.example.batikapp.ui.suhu.MonitoringSuhuActivity
-import com.example.monitoringlistrik3phase.service.model.NotificationData
-import com.example.monitoringlistrik3phase.service.model.PushNotification
+import com.example.batikapp.service.NotificationData
+import com.example.batikapp.service.PushNotification
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -114,13 +114,13 @@ class DashboardActivity : AppCompatActivity() {
 
 
     private fun checkNotifKain1() {
-        binding.alertWarning.visibility = View.GONE
+        binding.alertWarning1.visibility = View.GONE
 
         database.child("berat").child("kain_1")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value.toString().toInt() < 200) {
-                        binding.alertWarning.visibility = View.VISIBLE
+                        binding.alertWarning1.visibility = View.VISIBLE
                         // Sending message
                         val title = "Batik Batara App | Monitoring Kain"
                         val message = "Kain 1 Sudah Kering"
@@ -137,7 +137,7 @@ class DashboardActivity : AppCompatActivity() {
                         sendHistoryToFirestore1()
 
                     } else {
-                        binding.alertWarning.visibility = View.GONE
+                        binding.alertWarning1.visibility = View.GONE
                     }
                 }
 
@@ -149,12 +149,12 @@ class DashboardActivity : AppCompatActivity() {
 
 
     private fun checkNotifKain2() {
-        binding.alertWarning.visibility = View.INVISIBLE
+        binding.alertWarning2.visibility = View.INVISIBLE
         database.child("berat").child("kain_2")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value.toString().toInt() < 200) {
-                        binding.alertWarning.visibility = View.VISIBLE
+                        binding.alertWarning2.visibility = View.VISIBLE
 
                         // Sending message
                         val title = "Batik Batara App | Monitoring Kain"
@@ -172,7 +172,7 @@ class DashboardActivity : AppCompatActivity() {
                         sendHistoryToFirestore2()
 
                     } else {
-                        binding.alertWarning.visibility = View.GONE
+                        binding.alertWarning2.visibility = View.GONE
                     }
                 }
 
@@ -183,12 +183,12 @@ class DashboardActivity : AppCompatActivity() {
 
 
     private fun checkNotifKain3() {
-        binding.alertWarning.visibility = View.INVISIBLE
+        binding.alertWarning3.visibility = View.INVISIBLE
         database.child("berat").child("kain_3")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value.toString().toInt() < 200) {
-                        binding.alertWarning.visibility = View.VISIBLE
+                        binding.alertWarning3.visibility = View.VISIBLE
 
                         // Sending message
                         val title = "Batik Batara App | Monitoring Kain"
@@ -206,7 +206,7 @@ class DashboardActivity : AppCompatActivity() {
                         sendHistoryToFirestore3()
 
                     } else {
-                        binding.alertWarning.visibility = View.GONE
+                        binding.alertWarning3.visibility = View.GONE
                     }
                 }
 
@@ -217,12 +217,12 @@ class DashboardActivity : AppCompatActivity() {
 
 
     private fun checkNotifKain4() {
-        binding.alertWarning.visibility = View.INVISIBLE
+        binding.alertWarning4.visibility = View.INVISIBLE
         database.child("berat").child("kain_4")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value.toString().toInt() < 200) {
-                        binding.alertWarning.visibility = View.VISIBLE
+                        binding.alertWarning4.visibility = View.VISIBLE
 
                         // Sending message
                         val title = "Batik Batara App | Monitoring Kain"
@@ -240,7 +240,7 @@ class DashboardActivity : AppCompatActivity() {
                         sendHistoryToFirestore4()
 
                     } else {
-                        binding.alertWarning.visibility = View.GONE
+                        binding.alertWarning4.visibility = View.GONE
                     }
                 }
 
@@ -252,12 +252,12 @@ class DashboardActivity : AppCompatActivity() {
 
 
     private fun checkNotifKain5() {
-        binding.alertWarning.visibility = View.INVISIBLE
+        binding.alertWarning5.visibility = View.INVISIBLE
         database.child("berat").child("kain_5")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.value.toString().toInt() < 200) {
-                        binding.alertWarning.visibility = View.VISIBLE
+                        binding.alertWarning5.visibility = View.VISIBLE
 
                         // Sending message
                         val title = "Batik Batara App | Monitoring Kain"
@@ -275,7 +275,7 @@ class DashboardActivity : AppCompatActivity() {
                         sendHistoryToFirestore5()
 
                     } else {
-                        binding.alertWarning.visibility = View.GONE
+                        binding.alertWarning5.visibility = View.GONE
                     }
                 }
 

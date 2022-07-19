@@ -1,1 +1,1 @@
-package com.example.monitoringlistrik3phase.service.modeldata class NotificationData(    val title: String,    val body: String,)
+package com.example.batikapp.servicedata class NotificationData(    val title: String,    val body: String,)
